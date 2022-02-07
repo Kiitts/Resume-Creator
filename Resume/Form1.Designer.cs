@@ -58,28 +58,30 @@ namespace Resume
             this.skillLabel = new System.Windows.Forms.Label();
             this.skills = new System.Windows.Forms.TextBox();
             this.workingExperienceLabel = new System.Windows.Forms.Label();
-            this.jobTitleLabel = new System.Windows.Forms.Label();
-            this.companyNameLabel = new System.Windows.Forms.Label();
-            this.yearDurationLabel = new System.Windows.Forms.Label();
-            this.jobTitle1 = new System.Windows.Forms.TextBox();
-            this.jobTitle2 = new System.Windows.Forms.TextBox();
-            this.jobTitle3 = new System.Windows.Forms.TextBox();
-            this.companyName1 = new System.Windows.Forms.TextBox();
-            this.companyName2 = new System.Windows.Forms.TextBox();
-            this.companyName3 = new System.Windows.Forms.TextBox();
-            this.yearsWorked1 = new System.Windows.Forms.TextBox();
-            this.yearsWorked2 = new System.Windows.Forms.TextBox();
-            this.yearsWorked3 = new System.Windows.Forms.TextBox();
             this.summaryLabeel = new System.Windows.Forms.Label();
             this.summary = new System.Windows.Forms.TextBox();
             this.loadJsonButton = new System.Windows.Forms.Button();
             this.pdfButton = new System.Windows.Forms.Button();
+            this.workExperience = new System.Windows.Forms.DataGridView();
+            this.jobTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.companyName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.jobDuration = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.requiredWorkExperience = new System.Windows.Forms.Label();
+            this.course = new System.Windows.Forms.TextBox();
+            this.courseLabel = new System.Windows.Forms.Label();
+            this.update = new System.Windows.Forms.Label();
+            this.GenerateJSON = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.fullNameLabel = new System.Windows.Forms.Label();
+            this.fullName = new System.Windows.Forms.Label();
+            this.reset = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.workExperience)).BeginInit();
             this.SuspendLayout();
             // 
             // fNameLabel
             // 
             this.fNameLabel.AutoSize = true;
-            this.fNameLabel.Location = new System.Drawing.Point(12, 44);
+            this.fNameLabel.Location = new System.Drawing.Point(11, 60);
             this.fNameLabel.Name = "fNameLabel";
             this.fNameLabel.Size = new System.Drawing.Size(67, 15);
             this.fNameLabel.TabIndex = 0;
@@ -88,7 +90,7 @@ namespace Resume
             // addressLabel
             // 
             this.addressLabel.AutoSize = true;
-            this.addressLabel.Location = new System.Drawing.Point(12, 100);
+            this.addressLabel.Location = new System.Drawing.Point(11, 116);
             this.addressLabel.Name = "addressLabel";
             this.addressLabel.Size = new System.Drawing.Size(52, 15);
             this.addressLabel.TabIndex = 1;
@@ -97,7 +99,7 @@ namespace Resume
             // cpnLabel
             // 
             this.cpnLabel.AutoSize = true;
-            this.cpnLabel.Location = new System.Drawing.Point(12, 129);
+            this.cpnLabel.Location = new System.Drawing.Point(11, 145);
             this.cpnLabel.Name = "cpnLabel";
             this.cpnLabel.Size = new System.Drawing.Size(111, 15);
             this.cpnLabel.TabIndex = 2;
@@ -106,7 +108,7 @@ namespace Resume
             // llnLabel
             // 
             this.llnLabel.AutoSize = true;
-            this.llnLabel.Location = new System.Drawing.Point(12, 160);
+            this.llnLabel.Location = new System.Drawing.Point(11, 176);
             this.llnLabel.Name = "llnLabel";
             this.llnLabel.Size = new System.Drawing.Size(102, 15);
             this.llnLabel.TabIndex = 3;
@@ -115,7 +117,7 @@ namespace Resume
             // emailaLabel
             // 
             this.emailaLabel.AutoSize = true;
-            this.emailaLabel.Location = new System.Drawing.Point(12, 192);
+            this.emailaLabel.Location = new System.Drawing.Point(11, 208);
             this.emailaLabel.Name = "emailaLabel";
             this.emailaLabel.Size = new System.Drawing.Size(84, 15);
             this.emailaLabel.TabIndex = 4;
@@ -135,10 +137,10 @@ namespace Resume
             // 
             this.cpNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.cpNumber.Location = new System.Drawing.Point(129, 126);
+            this.cpNumber.Location = new System.Drawing.Point(128, 142);
             this.cpNumber.Name = "cpNumber";
             this.cpNumber.Size = new System.Drawing.Size(437, 23);
-            this.cpNumber.TabIndex = 3;
+            this.cpNumber.TabIndex = 4;
             this.cpNumber.Click += new System.EventHandler(this.cpNumber_Click);
             this.cpNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cpNumber_KeyPress);
             // 
@@ -146,30 +148,31 @@ namespace Resume
             // 
             this.address.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.address.Location = new System.Drawing.Point(129, 97);
+            this.address.Location = new System.Drawing.Point(128, 113);
             this.address.Name = "address";
             this.address.Size = new System.Drawing.Size(437, 23);
-            this.address.TabIndex = 2;
+            this.address.TabIndex = 3;
             this.address.Click += new System.EventHandler(this.address_Click);
             // 
             // fName
             // 
             this.fName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.fName.Location = new System.Drawing.Point(129, 41);
+            this.fName.Location = new System.Drawing.Point(128, 57);
             this.fName.Name = "fName";
             this.fName.Size = new System.Drawing.Size(437, 23);
             this.fName.TabIndex = 1;
             this.fName.Click += new System.EventHandler(this.fName_Click);
+            this.fName.TextChanged += new System.EventHandler(this.fName_TextChanged);
             // 
             // llNumber
             // 
             this.llNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.llNumber.Location = new System.Drawing.Point(129, 157);
+            this.llNumber.Location = new System.Drawing.Point(128, 173);
             this.llNumber.Name = "llNumber";
             this.llNumber.Size = new System.Drawing.Size(437, 23);
-            this.llNumber.TabIndex = 4;
+            this.llNumber.TabIndex = 5;
             this.llNumber.Click += new System.EventHandler(this.llNumber_Click);
             this.llNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.llNumber_KeyPress);
             // 
@@ -177,17 +180,17 @@ namespace Resume
             // 
             this.emailAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.emailAddress.Location = new System.Drawing.Point(129, 189);
+            this.emailAddress.Location = new System.Drawing.Point(128, 205);
             this.emailAddress.Name = "emailAddress";
             this.emailAddress.Size = new System.Drawing.Size(437, 23);
-            this.emailAddress.TabIndex = 5;
+            this.emailAddress.TabIndex = 6;
             this.emailAddress.Click += new System.EventHandler(this.emailAddress_Click);
             // 
             // educTitleLabel
             // 
             this.educTitleLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.educTitleLabel.AutoSize = true;
-            this.educTitleLabel.Location = new System.Drawing.Point(315, 229);
+            this.educTitleLabel.Location = new System.Drawing.Point(323, 240);
             this.educTitleLabel.Name = "educTitleLabel";
             this.educTitleLabel.Size = new System.Drawing.Size(158, 15);
             this.educTitleLabel.TabIndex = 6;
@@ -205,7 +208,7 @@ namespace Resume
             // lNameLabel
             // 
             this.lNameLabel.AutoSize = true;
-            this.lNameLabel.Location = new System.Drawing.Point(12, 73);
+            this.lNameLabel.Location = new System.Drawing.Point(11, 89);
             this.lNameLabel.Name = "lNameLabel";
             this.lNameLabel.Size = new System.Drawing.Size(66, 15);
             this.lNameLabel.TabIndex = 8;
@@ -215,11 +218,12 @@ namespace Resume
             // 
             this.lName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lName.Location = new System.Drawing.Point(129, 70);
+            this.lName.Location = new System.Drawing.Point(128, 86);
             this.lName.Name = "lName";
             this.lName.Size = new System.Drawing.Size(437, 23);
-            this.lName.TabIndex = 9;
+            this.lName.TabIndex = 2;
             this.lName.Click += new System.EventHandler(this.lName_Click);
+            this.lName.TextChanged += new System.EventHandler(this.lName_TextChanged);
             // 
             // hsLabel
             // 
@@ -247,7 +251,8 @@ namespace Resume
             this.hsName.MaximumSize = new System.Drawing.Size(280, 23);
             this.hsName.Name = "hsName";
             this.hsName.Size = new System.Drawing.Size(280, 23);
-            this.hsName.TabIndex = 12;
+            this.hsName.TabIndex = 8;
+            this.hsName.Click += new System.EventHandler(this.hsName_Click);
             // 
             // yGHS
             // 
@@ -256,8 +261,10 @@ namespace Resume
             this.yGHS.Location = new System.Drawing.Point(146, 299);
             this.yGHS.MaximumSize = new System.Drawing.Size(130, 23);
             this.yGHS.Name = "yGHS";
+            this.yGHS.PlaceholderText = "(ex: 2001)";
             this.yGHS.Size = new System.Drawing.Size(130, 23);
-            this.yGHS.TabIndex = 13;
+            this.yGHS.TabIndex = 9;
+            this.yGHS.Click += new System.EventHandler(this.yGHS_Click);
             this.yGHS.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.yGHS_KeyPress);
             // 
             // collegeTitleLabel
@@ -271,12 +278,13 @@ namespace Resume
             // 
             // yearClgGraduated
             // 
-            this.yearClgGraduated.Location = new System.Drawing.Point(569, 299);
-            this.yearClgGraduated.MaximumSize = new System.Drawing.Size(130, 23);
+            this.yearClgGraduated.Location = new System.Drawing.Point(569, 328);
+            this.yearClgGraduated.MaximumSize = new System.Drawing.Size(150, 23);
             this.yearClgGraduated.Name = "yearClgGraduated";
-            this.yearClgGraduated.Size = new System.Drawing.Size(130, 23);
-            this.yearClgGraduated.TabIndex = 18;
-            this.yearClgGraduated.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.yearClgGraduated_KeyPress);
+            this.yearClgGraduated.PlaceholderText = "(ex: 2022 or 2017-Present)";
+            this.yearClgGraduated.Size = new System.Drawing.Size(150, 23);
+            this.yearClgGraduated.TabIndex = 12;
+            this.yearClgGraduated.Click += new System.EventHandler(this.yearClgGraduated_Click);
             // 
             // clgUnivName
             // 
@@ -284,12 +292,13 @@ namespace Resume
             this.clgUnivName.MaximumSize = new System.Drawing.Size(280, 23);
             this.clgUnivName.Name = "clgUnivName";
             this.clgUnivName.Size = new System.Drawing.Size(224, 23);
-            this.clgUnivName.TabIndex = 17;
+            this.clgUnivName.TabIndex = 10;
+            this.clgUnivName.Click += new System.EventHandler(this.clgUnivName_Click);
             // 
             // yrClgGraduatedLabel
             // 
             this.yrClgGraduatedLabel.AutoSize = true;
-            this.yrClgGraduatedLabel.Location = new System.Drawing.Point(435, 302);
+            this.yrClgGraduatedLabel.Location = new System.Drawing.Point(434, 331);
             this.yrClgGraduatedLabel.Name = "yrClgGraduatedLabel";
             this.yrClgGraduatedLabel.Size = new System.Drawing.Size(90, 15);
             this.yrClgGraduatedLabel.TabIndex = 16;
@@ -327,7 +336,7 @@ namespace Resume
             // skillLabel
             // 
             this.skillLabel.AutoSize = true;
-            this.skillLabel.Location = new System.Drawing.Point(11, 344);
+            this.skillLabel.Location = new System.Drawing.Point(12, 360);
             this.skillLabel.Name = "skillLabel";
             this.skillLabel.Size = new System.Drawing.Size(36, 15);
             this.skillLabel.TabIndex = 21;
@@ -337,123 +346,21 @@ namespace Resume
             // 
             this.skills.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.skills.Location = new System.Drawing.Point(146, 344);
+            this.skills.Location = new System.Drawing.Point(54, 357);
             this.skills.Name = "skills";
             this.skills.PlaceholderText = "Seperated by comma (ex: C# Language Expert, Circuits Expert, Knowledgable at ardu" +
     "ino)";
-            this.skills.Size = new System.Drawing.Size(604, 23);
-            this.skills.TabIndex = 22;
+            this.skills.Size = new System.Drawing.Size(739, 23);
+            this.skills.TabIndex = 13;
             // 
             // workingExperienceLabel
             // 
             this.workingExperienceLabel.AutoSize = true;
-            this.workingExperienceLabel.Location = new System.Drawing.Point(394, 371);
+            this.workingExperienceLabel.Location = new System.Drawing.Point(394, 407);
             this.workingExperienceLabel.Name = "workingExperienceLabel";
             this.workingExperienceLabel.Size = new System.Drawing.Size(112, 15);
             this.workingExperienceLabel.TabIndex = 23;
             this.workingExperienceLabel.Text = "Working Experience";
-            // 
-            // jobTitleLabel
-            // 
-            this.jobTitleLabel.AutoSize = true;
-            this.jobTitleLabel.Location = new System.Drawing.Point(11, 404);
-            this.jobTitleLabel.Name = "jobTitleLabel";
-            this.jobTitleLabel.Size = new System.Drawing.Size(53, 15);
-            this.jobTitleLabel.TabIndex = 24;
-            this.jobTitleLabel.Text = "Job Title:";
-            // 
-            // companyNameLabel
-            // 
-            this.companyNameLabel.AutoSize = true;
-            this.companyNameLabel.Location = new System.Drawing.Point(11, 441);
-            this.companyNameLabel.Name = "companyNameLabel";
-            this.companyNameLabel.Size = new System.Drawing.Size(97, 15);
-            this.companyNameLabel.TabIndex = 25;
-            this.companyNameLabel.Text = "Company Name:";
-            // 
-            // yearDurationLabel
-            // 
-            this.yearDurationLabel.AutoSize = true;
-            this.yearDurationLabel.Location = new System.Drawing.Point(12, 478);
-            this.yearDurationLabel.Name = "yearDurationLabel";
-            this.yearDurationLabel.Size = new System.Drawing.Size(135, 15);
-            this.yearDurationLabel.TabIndex = 26;
-            this.yearDurationLabel.Text = "Year\'s Worked/Duration:";
-            // 
-            // jobTitle1
-            // 
-            this.jobTitle1.Location = new System.Drawing.Point(158, 396);
-            this.jobTitle1.Name = "jobTitle1";
-            this.jobTitle1.Size = new System.Drawing.Size(204, 23);
-            this.jobTitle1.TabIndex = 27;
-            this.jobTitle1.Click += new System.EventHandler(this.jobTitle1_Click);
-            // 
-            // jobTitle2
-            // 
-            this.jobTitle2.Location = new System.Drawing.Point(368, 396);
-            this.jobTitle2.Name = "jobTitle2";
-            this.jobTitle2.Size = new System.Drawing.Size(204, 23);
-            this.jobTitle2.TabIndex = 28;
-            this.jobTitle2.Click += new System.EventHandler(this.jobTitle2_Click);
-            // 
-            // jobTitle3
-            // 
-            this.jobTitle3.Location = new System.Drawing.Point(578, 396);
-            this.jobTitle3.Name = "jobTitle3";
-            this.jobTitle3.Size = new System.Drawing.Size(204, 23);
-            this.jobTitle3.TabIndex = 29;
-            this.jobTitle3.Click += new System.EventHandler(this.jobTitle3_Click);
-            // 
-            // companyName1
-            // 
-            this.companyName1.Location = new System.Drawing.Point(158, 438);
-            this.companyName1.Name = "companyName1";
-            this.companyName1.Size = new System.Drawing.Size(204, 23);
-            this.companyName1.TabIndex = 30;
-            this.companyName1.Click += new System.EventHandler(this.companyName1_Click);
-            // 
-            // companyName2
-            // 
-            this.companyName2.Location = new System.Drawing.Point(368, 438);
-            this.companyName2.Name = "companyName2";
-            this.companyName2.Size = new System.Drawing.Size(204, 23);
-            this.companyName2.TabIndex = 31;
-            this.companyName2.Click += new System.EventHandler(this.companyName2_Click);
-            // 
-            // companyName3
-            // 
-            this.companyName3.Location = new System.Drawing.Point(578, 438);
-            this.companyName3.Name = "companyName3";
-            this.companyName3.Size = new System.Drawing.Size(204, 23);
-            this.companyName3.TabIndex = 32;
-            this.companyName3.Click += new System.EventHandler(this.companyName3_Click);
-            // 
-            // yearsWorked1
-            // 
-            this.yearsWorked1.Location = new System.Drawing.Point(158, 475);
-            this.yearsWorked1.Name = "yearsWorked1";
-            this.yearsWorked1.Size = new System.Drawing.Size(204, 23);
-            this.yearsWorked1.TabIndex = 33;
-            this.yearsWorked1.Click += new System.EventHandler(this.yearsWorked1_Click);
-            this.yearsWorked1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.yearsWorked1_KeyPress);
-            // 
-            // yearsWorked2
-            // 
-            this.yearsWorked2.Location = new System.Drawing.Point(368, 475);
-            this.yearsWorked2.Name = "yearsWorked2";
-            this.yearsWorked2.Size = new System.Drawing.Size(204, 23);
-            this.yearsWorked2.TabIndex = 34;
-            this.yearsWorked2.Click += new System.EventHandler(this.yearsWorked2_Click);
-            this.yearsWorked2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.yearsWorked2_KeyPress);
-            // 
-            // yearsWorked3
-            // 
-            this.yearsWorked3.Location = new System.Drawing.Point(578, 475);
-            this.yearsWorked3.Name = "yearsWorked3";
-            this.yearsWorked3.Size = new System.Drawing.Size(204, 23);
-            this.yearsWorked3.TabIndex = 35;
-            this.yearsWorked3.Click += new System.EventHandler(this.yearsWorked3_Click);
-            this.yearsWorked3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.yearsWorked3_KeyPress);
             // 
             // summaryLabeel
             // 
@@ -472,14 +379,14 @@ namespace Resume
             this.summary.Multiline = true;
             this.summary.Name = "summary";
             this.summary.Size = new System.Drawing.Size(302, 176);
-            this.summary.TabIndex = 37;
+            this.summary.TabIndex = 7;
             this.summary.Click += new System.EventHandler(this.summary_Click);
             // 
             // loadJsonButton
             // 
-            this.loadJsonButton.Location = new System.Drawing.Point(158, 524);
+            this.loadJsonButton.Location = new System.Drawing.Point(12, 584);
             this.loadJsonButton.Name = "loadJsonButton";
-            this.loadJsonButton.Size = new System.Drawing.Size(75, 23);
+            this.loadJsonButton.Size = new System.Drawing.Size(96, 23);
             this.loadJsonButton.TabIndex = 38;
             this.loadJsonButton.Text = "Load JSON";
             this.loadJsonButton.UseVisualStyleBackColor = true;
@@ -487,7 +394,7 @@ namespace Resume
             // 
             // pdfButton
             // 
-            this.pdfButton.Location = new System.Drawing.Point(683, 524);
+            this.pdfButton.Location = new System.Drawing.Point(685, 584);
             this.pdfButton.Name = "pdfButton";
             this.pdfButton.Size = new System.Drawing.Size(99, 23);
             this.pdfButton.TabIndex = 39;
@@ -495,27 +402,135 @@ namespace Resume
             this.pdfButton.UseVisualStyleBackColor = true;
             this.pdfButton.Click += new System.EventHandler(this.pdfButton_Click);
             // 
+            // workExperience
+            // 
+            this.workExperience.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.workExperience.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.jobTitle,
+            this.companyName,
+            this.jobDuration});
+            this.workExperience.Location = new System.Drawing.Point(12, 453);
+            this.workExperience.Name = "workExperience";
+            this.workExperience.RowTemplate.Height = 25;
+            this.workExperience.Size = new System.Drawing.Size(885, 125);
+            this.workExperience.TabIndex = 40;
+            this.workExperience.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.workExperience_CellClick);
+            // 
+            // jobTitle
+            // 
+            this.jobTitle.HeaderText = "Job Title";
+            this.jobTitle.Name = "jobTitle";
+            this.jobTitle.Width = 280;
+            // 
+            // companyName
+            // 
+            this.companyName.HeaderText = "Company Name";
+            this.companyName.Name = "companyName";
+            this.companyName.Width = 280;
+            // 
+            // jobDuration
+            // 
+            this.jobDuration.HeaderText = "Job Duration";
+            this.jobDuration.Name = "jobDuration";
+            this.jobDuration.Width = 280;
+            // 
+            // requiredWorkExperience
+            // 
+            this.requiredWorkExperience.AutoSize = true;
+            this.requiredWorkExperience.ForeColor = System.Drawing.Color.Red;
+            this.requiredWorkExperience.Location = new System.Drawing.Point(12, 435);
+            this.requiredWorkExperience.Name = "requiredWorkExperience";
+            this.requiredWorkExperience.Size = new System.Drawing.Size(0, 15);
+            this.requiredWorkExperience.TabIndex = 41;
+            this.requiredWorkExperience.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // course
+            // 
+            this.course.Location = new System.Drawing.Point(569, 299);
+            this.course.MaximumSize = new System.Drawing.Size(280, 23);
+            this.course.Name = "course";
+            this.course.Size = new System.Drawing.Size(224, 23);
+            this.course.TabIndex = 11;
+            this.course.Click += new System.EventHandler(this.course_Click);
+            // 
+            // courseLabel
+            // 
+            this.courseLabel.AutoSize = true;
+            this.courseLabel.Location = new System.Drawing.Point(434, 307);
+            this.courseLabel.Name = "courseLabel";
+            this.courseLabel.Size = new System.Drawing.Size(47, 15);
+            this.courseLabel.TabIndex = 43;
+            this.courseLabel.Text = "Course:";
+            // 
+            // update
+            // 
+            this.update.AutoSize = true;
+            this.update.ForeColor = System.Drawing.Color.Red;
+            this.update.Location = new System.Drawing.Point(12, 626);
+            this.update.Name = "update";
+            this.update.Size = new System.Drawing.Size(0, 15);
+            this.update.TabIndex = 44;
+            this.update.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // GenerateJSON
+            // 
+            this.GenerateJSON.Location = new System.Drawing.Point(583, 584);
+            this.GenerateJSON.Name = "GenerateJSON";
+            this.GenerateJSON.Size = new System.Drawing.Size(96, 23);
+            this.GenerateJSON.TabIndex = 45;
+            this.GenerateJSON.Text = "Generate JSON";
+            this.GenerateJSON.UseVisualStyleBackColor = true;
+            this.GenerateJSON.Click += new System.EventHandler(this.GenerateJSON_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // fullNameLabel
+            // 
+            this.fullNameLabel.AutoSize = true;
+            this.fullNameLabel.Location = new System.Drawing.Point(10, 36);
+            this.fullNameLabel.Name = "fullNameLabel";
+            this.fullNameLabel.Size = new System.Drawing.Size(64, 15);
+            this.fullNameLabel.TabIndex = 46;
+            this.fullNameLabel.Text = "Full Name:";
+            // 
+            // fullName
+            // 
+            this.fullName.AutoSize = true;
+            this.fullName.Location = new System.Drawing.Point(128, 36);
+            this.fullName.Name = "fullName";
+            this.fullName.Size = new System.Drawing.Size(0, 15);
+            this.fullName.TabIndex = 47;
+            // 
+            // reset
+            // 
+            this.reset.Location = new System.Drawing.Point(323, 584);
+            this.reset.Name = "reset";
+            this.reset.Size = new System.Drawing.Size(96, 23);
+            this.reset.TabIndex = 48;
+            this.reset.Text = "Reset";
+            this.reset.UseVisualStyleBackColor = true;
+            this.reset.Click += new System.EventHandler(this.reset_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(923, 561);
+            this.ClientSize = new System.Drawing.Size(923, 650);
+            this.Controls.Add(this.reset);
+            this.Controls.Add(this.fullName);
+            this.Controls.Add(this.fullNameLabel);
+            this.Controls.Add(this.GenerateJSON);
+            this.Controls.Add(this.update);
+            this.Controls.Add(this.courseLabel);
+            this.Controls.Add(this.course);
+            this.Controls.Add(this.requiredWorkExperience);
+            this.Controls.Add(this.workExperience);
             this.Controls.Add(this.pdfButton);
             this.Controls.Add(this.loadJsonButton);
             this.Controls.Add(this.summary);
             this.Controls.Add(this.summaryLabeel);
-            this.Controls.Add(this.yearsWorked3);
-            this.Controls.Add(this.yearsWorked2);
-            this.Controls.Add(this.yearsWorked1);
-            this.Controls.Add(this.companyName3);
-            this.Controls.Add(this.companyName2);
-            this.Controls.Add(this.companyName1);
-            this.Controls.Add(this.jobTitle3);
-            this.Controls.Add(this.jobTitle2);
-            this.Controls.Add(this.jobTitle1);
-            this.Controls.Add(this.yearDurationLabel);
-            this.Controls.Add(this.companyNameLabel);
-            this.Controls.Add(this.jobTitleLabel);
             this.Controls.Add(this.workingExperienceLabel);
             this.Controls.Add(this.skills);
             this.Controls.Add(this.skillLabel);
@@ -545,11 +560,12 @@ namespace Resume
             this.Controls.Add(this.cpnLabel);
             this.Controls.Add(this.addressLabel);
             this.Controls.Add(this.fNameLabel);
-            this.MaximumSize = new System.Drawing.Size(939, 600);
+            this.MaximumSize = new System.Drawing.Size(939, 689);
             this.MinimumSize = new System.Drawing.Size(939, 600);
             this.Name = "Form1";
             this.Text = "Resume Maker";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.workExperience)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -586,22 +602,23 @@ namespace Resume
         private System.Windows.Forms.Label skillLabel;
         private System.Windows.Forms.TextBox skills;
         private System.Windows.Forms.Label workingExperienceLabel;
-        private System.Windows.Forms.Label jobTitleLabel;
-        private System.Windows.Forms.Label companyNameLabel;
-        private System.Windows.Forms.Label yearDurationLabel;
-        private System.Windows.Forms.TextBox jobTitle1;
-        private System.Windows.Forms.TextBox jobTitle2;
-        private System.Windows.Forms.TextBox jobTitle3;
-        private System.Windows.Forms.TextBox companyName1;
-        private System.Windows.Forms.TextBox companyName2;
-        private System.Windows.Forms.TextBox companyName3;
-        private System.Windows.Forms.TextBox yearsWorked1;
-        private System.Windows.Forms.TextBox yearsWorked2;
-        private System.Windows.Forms.TextBox yearsWorked3;
         private System.Windows.Forms.Label summaryLabeel;
         private System.Windows.Forms.TextBox summary;
         private System.Windows.Forms.Button loadJsonButton;
         private System.Windows.Forms.Button pdfButton;
+        private System.Windows.Forms.DataGridView workExperience;
+        private System.Windows.Forms.DataGridViewTextBoxColumn jobTitle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn companyName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn jobDuration;
+        private System.Windows.Forms.Label requiredWorkExperience;
+        private System.Windows.Forms.TextBox course;
+        private System.Windows.Forms.Label courseLabel;
+        private System.Windows.Forms.Label update;
+        private System.Windows.Forms.Button GenerateJSON;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Label fullNameLabel;
+        private System.Windows.Forms.Label fullName;
+        private System.Windows.Forms.Button reset;
     }
 }
 
