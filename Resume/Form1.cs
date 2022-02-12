@@ -492,11 +492,21 @@ namespace Resume
                 course.Text = personal.College[1];
                 yearClgGraduated.Text = personal.College[2];
             }
+            workExperience.Rows.Insert(0);
             for (int i = 0; i < personal.JobTitle.Count; i++)
             {
-                workExperience.Rows[i].Cells[0].Value = personal.JobTitle[i];
-                workExperience.Rows[i].Cells[1].Value = personal.CompanyName[i];
-                workExperience.Rows[i].Cells[2].Value = personal.YearDuration[i];
+                if (i == 0)
+                {
+                    workExperience.Rows[i].Cells[0].Value = personal.JobTitle[i];
+                    workExperience.Rows[i].Cells[1].Value = personal.CompanyName[i];
+                    workExperience.Rows[i].Cells[2].Value = personal.YearDuration[i];
+                }
+                else
+                {
+                    string[] row = new string[] {personal.JobTitle[i], personal.CompanyName[i],
+                    personal.YearDuration[i]};
+                    workExperience.Rows.Insert(i, row);
+                }
             }
             update.Text = "JSON Loaded!";
             ResetData();
