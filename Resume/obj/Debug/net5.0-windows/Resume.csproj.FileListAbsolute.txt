@@ -37,3 +37,6 @@ C:\Users\User\Desktop\Kitts Things 1-1\5-1st sem\OOP\copy workspace\Resume\Resum
 C:\Users\User\Desktop\Kitts Things 1-1\5-1st sem\OOP\copy workspace\Resume\Resume\bin\Debug\net5.0-windows\Newtonsoft.Json.dll
 C:\Users\User\Desktop\Kitts Things 1-1\5-1st sem\OOP\copy workspace\Resume\Resume\bin\Debug\net5.0-windows\BouncyCastle.Crypto.dll
 C:\Users\User\Desktop\Kitts Things 1-1\5-1st sem\OOP\copy workspace\Resume\Resume\bin\Debug\net5.0-windows\itextsharp.dll
+C:\Users\User\Desktop\Kitts Things 1-1\5-1st sem\OOP\resume\Resume\Resume\bin\Debug\net5.0-windows\BouncyCastle.Crypto.dll
+C:\Users\User\Desktop\Kitts Things 1-1\5-1st sem\OOP\resume\Resume\Resume\bin\Debug\net5.0-windows\itextsharp.dll
+C:\Users\User\Desktop\Kitts Things 1-1\5-1st sem\OOP\resume\Resume\Resume\bin\Debug\net5.0-windows\Newtonsoft.Json.dll

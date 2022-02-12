@@ -104,11 +104,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Desktop\\Kitts Things 1-1\\5-1st sem\\OOP\\copy workspace\\Resume\\Resume\\Resume.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Desktop\\Kitts Things 1-1\\5-1st sem\\OOP\\resume\\Resume\\Resume\\Resume.csproj",
       "projectName": "Resume",
-      "projectPath": "C:\\Users\\User\\Desktop\\Kitts Things 1-1\\5-1st sem\\OOP\\copy workspace\\Resume\\Resume\\Resume.csproj",
+      "projectPath": "C:\\Users\\User\\Desktop\\Kitts Things 1-1\\5-1st sem\\OOP\\resume\\Resume\\Resume\\Resume.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Desktop\\Kitts Things 1-1\\5-1st sem\\OOP\\copy workspace\\Resume\\Resume\\obj\\",
+      "outputPath": "C:\\Users\\User\\Desktop\\Kitts Things 1-1\\5-1st sem\\OOP\\resume\\Resume\\Resume\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",

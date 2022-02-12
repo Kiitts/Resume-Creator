@@ -44,6 +44,10 @@ namespace Resume
         {
             allTxtBox = new[] { fName, lName, address, cpNumber, llNumber, emailAddress, summary};
         }
+        private void update_MouseDown(object sender, MouseEventArgs e)
+        {
+            update.Text = "";
+        }
 
         private void cpNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -290,6 +294,7 @@ namespace Resume
             fName.Text = string.Empty;
             lName.Text = string.Empty;
             address.Text = string.Empty;
+            emailAddress.Text = string.Empty;
             skills.Text = string.Empty;
             cpNumber.Text = string.Empty;
             llNumber.Text = string.Empty;
@@ -339,6 +344,8 @@ namespace Resume
             else
             {
                 TempSaveData();
+                CreatePDF();
+                ResetData();
             }
         }
         // functionality
@@ -493,6 +500,189 @@ namespace Resume
             }
             update.Text = "JSON Loaded!";
             ResetData();
+        }
+        private void CreatePDF()
+        {
+            bool withll = false, withcp = false;
+            Document doc = new Document(iTextSharp.text.PageSize.LETTER, 72, 72, 72, 72);
+            PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream(@$"save\{tFName}_{tLName}.pdf", FileMode.Create));
+            BaseFont bDefault = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, false);
+            iTextSharp.text.Font fDefault = new iTextSharp.text.Font(bDefault, 12);
+            Chunk linebreak = new Chunk(new iTextSharp.text.pdf.draw.LineSeparator(2f, 100f, BaseColor.BLACK, Element.ALIGN_CENTER, -1));
+            Paragraph endLine = new Paragraph("\n");
+
+            //for Full Name
+            BaseFont bfFullName = BaseFont.CreateFont(BaseFont.TIMES_BOLD, BaseFont.CP1252, false);
+            iTextSharp.text.Font fFullName = new iTextSharp.text.Font(bfFullName, 16);
+            Paragraph pFullName = new Paragraph($"{tFullName.ToUpper()}", fFullName);
+
+            // For Contact Details
+            Paragraph pContactDetails1 = new Paragraph($"Address: {tAddress}", fDefault);
+            Paragraph pContactDetails2 = new Paragraph("");
+            if (tLlNumber != "" && tCpNumber != "")
+            {
+                withll = true;
+                withcp = true;
+                pContactDetails2 = new Paragraph($"Landline Number: {tLlNumber}\n" +
+                    $"Cellphone Number: {tCpNumber}\n" +
+                    $"Email Address: {tEmailAddress}", fDefault);
+            }
+            else if (tLlNumber != "")
+            {
+                withll = true;
+                pContactDetails2 = new Paragraph($"Landline Number: {tLlNumber}\n" +
+                    $"Email Address: {tEmailAddress}", fDefault);
+            }
+            else if (tCpNumber != "")
+            {
+                withcp = true;
+                pContactDetails2 = new Paragraph($"Cellphone Number: {tCpNumber}\n" +
+                    $"Email Address: {tEmailAddress}", fDefault);
+            }
+
+            // for table header & summary
+            iTextSharp.text.Font fDefaultBold = new iTextSharp.text.Font(bfFullName, 12);
+            PdfPTable taSummary = new PdfPTable(1);
+            PdfPCell cSummary = new PdfPCell(new Phrase("SUMMARY", fDefaultBold));
+            cSummary.BackgroundColor = BaseColor.LIGHT_GRAY;
+            cSummary.VerticalAlignment = 1;
+            taSummary.AddCell(cSummary);
+            taSummary.WidthPercentage = 100;
+            Paragraph pSummary = new Paragraph($"{tSummary}",fDefault);
+
+            // for educational background
+            PdfPTable taEduc = new PdfPTable(1);
+            PdfPCell cEduc = new PdfPCell(new Phrase("EDUCATIONAL BACKGROUND", fDefaultBold));
+            cEduc.BackgroundColor = BaseColor.LIGHT_GRAY;
+            cEduc.VerticalAlignment = 1;
+            taEduc.AddCell(cEduc);
+            taEduc.WidthPercentage = 100;
+            PdfPTable taEducB = new PdfPTable(3);
+            PdfPCell cName = new PdfPCell(new Phrase("School Name", fDefaultBold));
+            PdfPCell cCourseLevel = new PdfPCell(new Phrase("Degree/Level", fDefaultBold));
+            PdfPCell cYear = new PdfPCell(new Phrase("Year Graduated", fDefaultBold));
+            cName.VerticalAlignment = 1; cName.HorizontalAlignment = 1;
+            cCourseLevel.VerticalAlignment = 1; cCourseLevel.HorizontalAlignment = 1;
+            cYear.VerticalAlignment = 1; cYear.HorizontalAlignment = 1;
+            taEducB.AddCell(cName);
+            taEducB.AddCell(cCourseLevel);
+            taEducB.AddCell(cYear);
+            for(int i = 0; i < tCollege.Count; i++)
+            {
+                if (i == 1)
+                {
+                    PdfPCell educHolder = new PdfPCell(new Phrase($"Tertiary\n{tCollege[i]}", fDefault));
+                    educHolder.VerticalAlignment = 1;
+                    educHolder.HorizontalAlignment = 1;
+                    taEducB.AddCell(educHolder);
+                }
+                else
+                {
+                    PdfPCell educHolder = new PdfPCell(new Phrase($"{tCollege[i]}", fDefault));
+                    educHolder.VerticalAlignment = 1;
+                    educHolder.HorizontalAlignment = 1;
+                    taEducB.AddCell(educHolder);
+                }
+            }
+            for(int i = 0; i < tHighSchool.Count; i++)
+            {
+                if(i==0)
+                {
+                    PdfPCell educHolder = new PdfPCell(new Phrase($"{tHighSchool[i]}", fDefault));
+                    PdfPCell educHolder2 = new PdfPCell(new Phrase($"Secondary Level", fDefault));
+                    educHolder.VerticalAlignment = 1; educHolder2.VerticalAlignment = 1;
+                    educHolder.HorizontalAlignment = 1; educHolder2.HorizontalAlignment = 1;
+                    taEducB.AddCell(educHolder); taEducB.AddCell(educHolder2);
+                }
+                else
+                {
+                    PdfPCell educHolder = new PdfPCell(new Phrase($"{tHighSchool[i]}", fDefault));
+                    educHolder.VerticalAlignment = 1;
+                    educHolder.HorizontalAlignment = 1;
+                    taEducB.AddCell(educHolder);
+                }
+            }
+            taEducB.WidthPercentage = 100;
+
+            // for skills
+            PdfPTable taSkills = new PdfPTable(1);
+            PdfPCell cSkills = new PdfPCell(new Phrase("SKILLS", fDefaultBold));
+            cSkills.BackgroundColor = BaseColor.LIGHT_GRAY;
+            cSkills.VerticalAlignment = 1;
+            taSkills.AddCell(cSkills);
+            taSkills.WidthPercentage = 100;
+            iTextSharp.text.List skillset = new iTextSharp.text.List(iTextSharp.text.List.UNORDERED);
+            for(int i = 0; i < tSkills.Count; i++)
+            {
+                var holder = new Phrase(tSkills[i], fDefault);
+                skillset.Add(new iTextSharp.text.ListItem(holder));
+            }
+
+            // for working experience
+            PdfPTable taWorkExp = new PdfPTable(1);
+            PdfPCell cWorkExp = new PdfPCell(new Phrase("WORKING EXPERIENCE", fDefaultBold));
+            cWorkExp.BackgroundColor = BaseColor.LIGHT_GRAY;
+            cWorkExp.VerticalAlignment = 1;
+            taWorkExp.AddCell(cWorkExp);
+            taWorkExp.WidthPercentage = 100;
+            PdfPTable taWE = new PdfPTable(3);
+            taWE.WidthPercentage = 100;
+            PdfPCell cJobTitleL = new PdfPCell(new Phrase("Job Title", fDefaultBold));
+            cJobTitleL.VerticalAlignment = 1; cJobTitleL.HorizontalAlignment = 1;
+            PdfPCell cCompanyNameL = new PdfPCell(new Phrase("Company Name", fDefaultBold));
+            cCompanyNameL.VerticalAlignment = 1; cCompanyNameL.HorizontalAlignment = 1;
+            PdfPCell cDurationL = new PdfPCell(new Phrase("Duration", fDefaultBold));
+            cDurationL.VerticalAlignment = 1; cDurationL.HorizontalAlignment = 1;
+            taWE.AddCell(cJobTitleL);
+            taWE.AddCell(cCompanyNameL);
+            taWE.AddCell(cDurationL);
+            for (int i = 0; i < tJobTitle.Count; i++)
+            {
+                PdfPCell cJobTitle = new PdfPCell(new Phrase(tJobTitle[i], fDefault));
+                cJobTitle.VerticalAlignment = 1; cJobTitle.HorizontalAlignment = 1;
+                PdfPCell cCompanyName = new PdfPCell(new Phrase(tCompanyName[i], fDefault));
+                cCompanyName.VerticalAlignment = 1; cCompanyName.HorizontalAlignment = 1;
+                PdfPCell cDuration = new PdfPCell(new Phrase(tDuration[i], fDefault));
+                cDuration.VerticalAlignment = 1; cDuration.HorizontalAlignment = 1;
+                taWE.AddCell(cJobTitle);
+                taWE.AddCell(cCompanyName);
+                taWE.AddCell(cDuration);
+            }
+
+            // creating PDF
+            doc.Open();
+
+            // for Full Name
+            doc.Add(pFullName);
+
+            // for contact details
+            doc.Add(pContactDetails1);
+            doc.Add(pContactDetails2);
+            doc.Add(linebreak);
+
+            //summary
+            doc.Add(taSummary);
+            doc.Add(pSummary);
+
+            //educ
+            doc.Add(endLine);
+            doc.Add(taEduc);
+            doc.Add(endLine);
+            doc.Add(taEducB);
+
+            //skills
+            doc.Add(endLine);
+            doc.Add(taSkills);
+            doc.Add(skillset);
+
+            //for working experience
+            doc.Add(endLine);
+            doc.Add(taWorkExp);
+            doc.Add(endLine);
+            doc.Add(taWE);
+
+            doc.Close();
+            update.Text = "PDF Generated";
         }
     }
 }

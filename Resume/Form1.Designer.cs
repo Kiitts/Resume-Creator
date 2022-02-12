@@ -471,6 +471,7 @@ namespace Resume
             this.update.Size = new System.Drawing.Size(0, 15);
             this.update.TabIndex = 44;
             this.update.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.update.MouseDown += new System.Windows.Forms.MouseEventHandler(this.update_MouseDown);
             // 
             // GenerateJSON
             // 
